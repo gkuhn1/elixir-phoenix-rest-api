@@ -1,4 +1,4 @@
-FROM voidlock/elixir:1.1
+FROM elixir:1.4.2
 
 # install psql
 RUN apt-get update && apt-get install -y postgresql-client
@@ -15,5 +15,9 @@ WORKDIR /usr/src/app
 COPY mix.* /usr/src/app/
 COPY config /usr/src/app/
 RUN mix do deps.get, deps.compile
+
+RUN mix deps.get && \
+    mix ecto.create && \
+    mix ecto.migrate
 
 CMD ["mix", "phoenix.server"]

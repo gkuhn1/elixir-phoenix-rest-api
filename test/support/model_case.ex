@@ -17,15 +17,17 @@ defmodule RestApi.ModelCase do
   using do
     quote do
       alias RestApi.Repo
-      import Ecto.Model
+      import Ecto.Schema
       import Ecto.Query, only: [from: 2]
       import RestApi.ModelCase
     end
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(RestApi.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(RestApi.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(RestApi.Repo, {:shared, self()})
     end
 
     :ok

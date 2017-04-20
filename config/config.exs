@@ -5,6 +5,10 @@
 # is restricted to this project.
 use Mix.Config
 
+# General application configuration
+config :rest_api,
+  ecto_repos: [RestApi.Repo]
+
 # Configures the endpoint
 config :rest_api, RestApi.Endpoint,
   url: [host: "localhost"],

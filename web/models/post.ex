@@ -1,15 +1,15 @@
 defmodule RestApi.Post do
   use RestApi.Web, :model
 
+  @derive {Poison.Encoder, only: [:title, :content]}
   schema "posts" do
     field :title, :string
     field :content, :string
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(title content)
-  @optional_fields ~w()
+  @required_fields [:title, :content]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -19,6 +19,7 @@ defmodule RestApi.Post do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 end

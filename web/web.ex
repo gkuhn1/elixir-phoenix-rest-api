@@ -18,8 +18,9 @@ defmodule RestApi.Web do
 
   def model do
     quote do
-      use Ecto.Model
+      use Ecto.Schema
 
+      import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
     end
@@ -30,7 +31,8 @@ defmodule RestApi.Web do
       use Phoenix.Controller
 
       alias RestApi.Repo
-      import Ecto.Model
+      import Ecto
+      import Ecto.Schema
       import Ecto.Query, only: [from: 1, from: 2]
 
       import RestApi.Router.Helpers
@@ -62,7 +64,8 @@ defmodule RestApi.Web do
       use Phoenix.Channel
 
       alias RestApi.Repo
-      import Ecto.Model
+      import Ecto
+      import Ecto.Schema
       import Ecto.Query, only: [from: 1, from: 2]
     end
   end

@@ -25,8 +25,8 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ### Running With Docker
 
-  1. Create and migrate your database with `docker-compose run --rm local sh -c "mix ecto.create && mix ecto.migrate`
-  1. Start Phoenix endpoint with `docker-compose run --rm local`
+  1. Create and migrate your database with `docker-compose run --rm local sh -c "mix deps.get && mix ecto.create && mix ecto.migrate`
+  2. Start Phoenix endpoint with `docker-compose run --rm local`
 
 Now you can visit `<container-ip>:<container-public-port>` from your browser.
 Or in case your are using [dockito-proxy](https://github.com/dockito/proxy) [api.local.dockito.org](api.local.dockito.org).
